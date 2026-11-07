@@ -119,7 +119,7 @@
     return formatter ? formatter.format(date) : date.toDateString();
   }
 
-  function formatDateTime(value, lang, options = { dateStyle: 'medium', timeStyle: 'short' }) {
+  function formatDateTime(value, lang, options = { dateStyle: 'medium', timeStyle: 'medium' }) {
     return formatDate(value, lang, options);
   }
 
