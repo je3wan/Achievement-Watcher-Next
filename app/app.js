@@ -565,7 +565,7 @@ function psnPlatinumRow(game) {
   const icon = platinum.icon || pathToFileURL(path.join(appPath, 'resources/img/achievement.svg')).href;
   const time = earnedAt
     ? `<div class="time" data-time="${earnedAt}"><i class="fas fa-clock"></i> <span>${escapeHtml(
-        intlFormat.formatDateTime(earnedAt, uiLang(), { dateStyle: 'short', timeStyle: 'short' })
+        intlFormat.formatDateTime(earnedAt, uiLang(), { dateStyle: 'short', timeStyle: 'medium' })
       )}</span> <span>${escapeHtml(intlFormat.formatRelativeTime(earnedAt, uiLang()))}</span></div>`
     : '';
   // The same figure as a platinum tied to an achievement: grade, then the share of players.
@@ -1735,7 +1735,7 @@ function libraryRelativeTime(timestamp) {
   const lang = uiLang();
   const date = new Date(seconds * 1000);
   const relative = intlFormat.formatRelativeTime(seconds, lang);
-  const exact = intlFormat.formatDateTime(seconds, lang, { dateStyle: 'full', timeStyle: 'short' });
+  const exact = intlFormat.formatDateTime(seconds, lang, { dateStyle: 'full', timeStyle: 'medium' });
   return `<time class="library-scroll-text" datetime="${date.toISOString()}" title="${escapeHtml(
     exact
   )}"><span class="library-scroll-content">${escapeHtml(relative)}</span></time>`;
@@ -3931,7 +3931,7 @@ function formatGbeBackupDetail(backup, game) {
   if (game?.gameDir) lines.push(`${t('game', 'Game', 'Jeu')}: ${game.gameDir}`);
   if (backup?.backupDir) lines.push(`${t('backup', 'Backup', 'Sauvegarde')}: ${backup.backupDir}`);
   if (backup?.createdAt) {
-    const created = intlFormat.formatDateTime(backup.createdAt, uiLang(), { dateStyle: 'short', timeStyle: 'short' });
+    const created = intlFormat.formatDateTime(backup.createdAt, uiLang(), { dateStyle: 'short', timeStyle: 'medium' });
     if (created) lines.push(`${t('created', 'Created', 'Créée')}: ${created}`);
   }
   if (backup?.manifest?.gameDir && game?.gameDir && normalizePathKey(backup.manifest.gameDir) !== normalizePathKey(game.gameDir)) {
@@ -7934,7 +7934,7 @@ var app = {
       for (let achievement of game.achievement.list) {
         const iconId = achievementIconId(achievement.name);
         const unlockLang = uiLang();
-        const unlockAt = intlFormat.formatDateTime(achievement.UnlockTime, unlockLang, { dateStyle: 'short', timeStyle: 'short' });
+        const unlockAt = intlFormat.formatDateTime(achievement.UnlockTime, unlockLang, { dateStyle: 'short', timeStyle: 'medium' });
         const unlockAgo = intlFormat.formatRelativeTime(achievement.UnlockTime, unlockLang);
         const steps = stepsByName[achievement.name] || [];
         const progress = achievementStepsView.barState(getAchievementProgressState(achievement), steps, Boolean(achievement.Achieved));
